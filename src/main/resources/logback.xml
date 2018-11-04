@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<!-- property logFileLocation : is set programmatically to JARLocation/logs/ -->
+	<property name="logFileName" value="vkFileManager" />
+	<timestamp key="logFileNamePattern" datePattern="yyyyMMdd_HHmmssSSS" />
+	<property name="logPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %level %logger - %msg%n" />
+	
+	
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${logPattern}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>${logFileLocation}/${logFileName}_${logFileNamePattern}.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>${logPattern}</pattern>
+		</encoder>
+	</appender>
+	
+	
+	
+	<root level="DEBUG">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
