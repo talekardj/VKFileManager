@@ -72,6 +72,7 @@ Currently written using Java8 libraries
 <br/>
 <br/>
 <b>vkFileManager.properties ::: </b>
+
 - vk.root.dir : 
 	specify the root directory from which to start iterating it and processing the files
 	e.g. D:/Dev/VK/inputs/
@@ -91,6 +92,7 @@ Currently written using Java8 libraries
 <br/>
 <br/>
 <b>Replacement strategies ::: </b>
+	
 - REPLACE_TARGETTAGCONTENT : if file contains any occurance of tags '<source></source><target></target>'
 	replace only in content between '<target><target>'
 	e.g. 
