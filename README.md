@@ -73,46 +73,46 @@ Currently written using Java8 libraries
 <br/>
 <b>vkFileManager.properties ::: </b>
 
-- vk.root.dir : 
-	specify the root directory from which to start iterating it and processing the files
-	e.g. D:/Dev/VK/inputs/
+- vk.root.dir : <br/>
+	specify the root directory from which to start iterating it and processing the files<br/>
+	e.g. D:/Dev/VK/inputs/<br/>
 	
-- vk.<folder name>.replacements=<comma separated replacement texts>
-	specify strings (comma separated) to be replaced in files in this locale folder
-	e.g. vk.de-DE.replacements=emc.com,www.emc.com,www.emc.com,dell.com,www.dell.com
-		here, we tell program that, 
-		all files in de-DE folder can have followingn replacable strings : 'emc.com,www.emc.com,www.emc.com,dell.com,www.dell.com'
-		on finding any of these, replace it asmentioned in below property
+- vk.<folder name>.replacements=<comma separated replacement texts><br/>
+	specify strings (comma separated) to be replaced in files in this locale folder<br/>
+	e.g. vk.de-DE.replacements=emc.com,www.emc.com,www.emc.com,dell.com,www.dell.com<br/>
+		here, we tell program that, <br/>
+		all files in de-DE folder can have following replacable strings : 'emc.com,www.emc.com,www.emc.com,dell.com,www.dell.com'<br/>
+		on finding any of these, replace it asmentioned in below property<br/>
 		
-- vk.<folder name>.replacement<text to be replaced>=<replacement text>
-	specify string (that was mentioned just above line) and its replacement
-	e.g. vk.de-DE.replacement.emc.com=germany.emc.com
-		here, in all files in de-DE folder 'emc.com' will be replaced with 'germany.emc.com'
+- vk.<folder name>.replacement<text to be replaced>=<replacement text><br/>
+	specify string (that was mentioned just above line) and its replacement<br/>
+	e.g. vk.de-DE.replacement.emc.com=germany.emc.com<br/>
+		here, in all files in de-DE folder 'emc.com' will be replaced with 'germany.emc.com'<br/>
 <br/>
 <br/>
 <br/>
 <b>Replacement strategies ::: </b>
 	
-- REPLACE_TARGETTAGCONTENT : if file contains any occurance of tags '<source></source><target></target>'
-	replace only in content between '<target><target>'
-	e.g. 
-		input : 
-			<source>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</source>
-			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target>
-		output : 
-			<source>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</source>
-			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target>
+- REPLACE_TARGETTAGCONTENT : if file contains any occurance of tags '<source></source><target></target>'<br/>
+	replace only in content between '<target><target>'<br/>
+	e.g. <br/>
+		input : <br/>
+			<source>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</source><br/>
+			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target><br/>
+		output : <br/>
+			<source>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</source><br/>
+			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target><br/>
 
-- else REPLACE_ALLOCCURRENCES : 
-	replace all found occurances in file
-	e.g. 
-		input : 
-			<tr>
+- else REPLACE_ALLOCCURRENCES : <br/>
+	replace all found occurances in file<br/>
+	e.g. <br/>
+		input : <br/>
+			<tr><br/>
 				<a>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</a>
-				<a>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/en-US/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</a>
-			</tr>
-		output : 
-			<tr>
-				<a>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</a>
-				<a>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/de-de/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</a>
-			</tr>
+				<a>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/en-US/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</a><br/>
+			</tr><br/>
+		output : <br/>
+			<tr><br/>
+				<a>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</a><br/>
+				<a>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/de-de/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</a><br/>
+			</tr><br/>
