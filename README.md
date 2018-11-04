@@ -6,8 +6,8 @@ Currently written using Java8 libraries
 <br/>
 <b>Run as ::: </b>
 - create an executable JAR using 'mvn package' goal
-- copy vkFileManager.properties at same location where above JAR (vkFileManager-xxx-jar-with-dependencies.jar) is kept
-- modify the vkFileManager.properties accordingly
+- copy 'vkFileManager.properties' at same location where above JAR (vkFileManager-xxx-jar-with-dependencies.jar) is kept
+- modify the 'vkFileManager.properties' accordingly
 - run the JAR using 'java -jar vkFileManager-xxx-jar-with-dependencies.jar'
 - you will see the execution flow on console as well as in log file created in '/logs' directory (created in same directory as of JAR)
 <br/>
@@ -81,27 +81,28 @@ Currently written using Java8 libraries
 	specify strings (comma separated) to be replaced in files in this locale folder<br/>
 	e.g. vk.de-DE.replacements=emc.com,www.emc.com,www.emc.com,dell.com,www.dell.com<br/>
 		here, we tell program that, <br/>
-		all files in de-DE folder can have following replacable strings : 'emc.com,www.emc.com,www.emc.com,dell.com,www.dell.com'<br/>
-		on finding any of these, replace it asmentioned in below property<br/>
+		all files in 'de-DE' folder can have following replacable strings : 'emc.com,www.emc.com,www.emc.com,dell.com,www.dell.com'<br/>
+		on finding any of these, replace it as mentioned in below property<br/>
 		
 - vk.<folder name>.replacement<text to be replaced>=<replacement text><br/>
 	specify string (that was mentioned just above line) and its replacement<br/>
 	e.g. vk.de-DE.replacement.emc.com=germany.emc.com<br/>
-		here, in all files in de-DE folder 'emc.com' will be replaced with 'germany.emc.com'<br/>
+		here, in all files in 'de-DE folder', 'emc.com' will be replaced with 'germany.emc.com'<br/>
 <br/>
 <br/>
 <br/>
 <b>Replacement strategies ::: </b>
 	
-- REPLACE_TARGETTAGCONTENT : if file contains any occurance of tags '<source></source><target></target>'<br/>
-	replace only in content between '<target><target>'<br/>
+- REPLACE_TARGETTAGCONTENT : <br/>
+	if file contains any occurance of tags '<source></source><target></target>'<br/>
+	do replacements only in content between '<target><target>' tags<br/>
 	e.g. <br/>
-		input : <br/>
+		input : <br/><br/>
 			<source>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</source><br/>
-			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target><br/>
-		output : <br/>
+			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target><br/><br/>
+		output : <br/><br/>
 			<source>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</source><br/>
-			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target><br/>
+			<target>{"cta.title":"","cta":"{\"ctaParent\":false,\"iconPath\":\"\",\"url\":\"http://www.germany.emc.com/cloud/virtustream-enterprise-cloud\",\"text\":\"LEARN MORE\",\"type\":\"btn quaternary\",\"isExternal\":true,\"isHidden\":false,\"enablementLink\":\"\",\"ctaArrow\":\"\"}"}</target><br/><br/>
 
 - else REPLACE_ALLOCCURRENCES : <br/>
 	replace all found occurances in file<br/>
