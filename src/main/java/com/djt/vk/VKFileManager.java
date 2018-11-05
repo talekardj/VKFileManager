@@ -21,12 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Dhananjay
- *
- */
-/**
- * @author Dhananjay
- *
+ * @author Dhananjay <br/>
+ * Checkout code from <a href="https://github.com/talekardj/VKFileManager">GitHub</a>
  */
 public class VKFileManager
 {
